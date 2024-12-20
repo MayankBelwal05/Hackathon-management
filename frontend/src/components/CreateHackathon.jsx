@@ -3,10 +3,10 @@ import axios from "axios";
 
 const CreateHackathon = () => {
     const [formData, setFormData] = useState({
-        name: "",           
+        name: "",
         description: "",
-        startDate: "",      
-        endDate: "",        
+        startDate: "",
+        endDate: "",
     });
     const [message, setMessage] = useState("");
 
@@ -34,43 +34,75 @@ const CreateHackathon = () => {
     };
 
     return (
-        <div className="max-w-lg mx-auto">
-            <h1 className="text-2xl font-bold mb-4">Create Hackathon</h1>
-            <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md">
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full p-2 border rounded mb-4"
-                />
-                <textarea
-                    name="description"
-                    placeholder="Description"
-                    value={formData.description}
-                    onChange={handleChange}
-                    className="w-full p-2 border rounded mb-4"
-                ></textarea>
-                <input
-                    type="date"
-                    name="startDate"
-                    value={formData.startDate}
-                    onChange={handleChange}
-                    className="w-full p-2 border rounded mb-4"
-                />
-                <input
-                    type="date"
-                    name="endDate"
-                    value={formData.endDate}
-                    onChange={handleChange}
-                    className="w-full p-2 border rounded mb-4"
-                />
-                <button type="submit" className="bg-blue-500 text-white p-2 rounded">
-                    Create Hackathon
-                </button>
-            </form>
-            {message && <p className="mt-4 text-center">{message}</p>}
+        <div className="flex justify-center items-center min-h-screen bg-gray-100">
+            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-xl">
+                <h1 className="text-3xl font-bold text-blue-600 text-center mb-6">Create Your Amazing Hackathon 🚀</h1>
+                <p className="text-lg text-gray-600 text-center mb-6">
+                    Start your journey to building incredible projects and changing the world. Fill in the details below to create a new hackathon event.
+                </p>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                        <label className="block text-lg font-medium text-gray-700" htmlFor="name">Hackathon Name</label>
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Enter the name of your hackathon"
+                            value={formData.name}
+                            onChange={handleChange}
+                            className="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <label className="block text-lg font-medium text-gray-700" htmlFor="description">Hackathon Description</label>
+                        <textarea
+                            name="description"
+                            placeholder="Describe your hackathon"
+                            value={formData.description}
+                            onChange={handleChange}
+                            className="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            required
+                        ></textarea>
+                    </div>
+
+                    <div className="flex space-x-4">
+                        <div className="w-1/2">
+                            <label className="block text-sm font-medium text-gray-700" htmlFor="startDate">Start Date</label>
+                            <input
+                                type="date"
+                                name="startDate"
+                                value={formData.startDate}
+                                onChange={handleChange}
+                                className="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                required
+                            />
+                        </div>
+                        <div className="w-1/2">
+                            <label className="block text-sm font-medium text-gray-700" htmlFor="endDate">End Date</label>
+                            <input
+                                type="date"
+                                name="endDate"
+                                value={formData.endDate}
+                                onChange={handleChange}
+                                className="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <button
+                            type="submit"
+                            className="w-full py-3 px-4 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                            Create Hackathon 🎉
+                        </button>
+                    </div>
+                </form>
+
+                {message && <p className="mt-6 text-center text-lg font-semibold text-gray-700">{message}</p>}
+            </div>
         </div>
     );
 };

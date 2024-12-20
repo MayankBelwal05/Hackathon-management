@@ -11,29 +11,58 @@ const Navbar = () => {
     const isAuthenticated = !!localStorage.getItem("token");
 
     return (
-        <nav className="bg-blue-600 fixed w-full p-4 shadow-md">
+        <nav
+            className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 fixed w-full p-4 shadow-md z-50 font-poppins"
+        >
             <div className="container mx-auto flex justify-between items-center">
-                <Link to="/" className="text-white text-lg font-bold">Hackathon Platform</Link>
-                <div className="flex gap-4">
+                <Link
+                    to="/home"
+                    className="text-white text-3xl font-semibold tracking-wide"
+                >
+                    💻 Hackathons
+                </Link>
+                <div className="flex gap-6">
                     {isAuthenticated ? (
                         <>
-                            <Link to="/create-hackathon" className="text-white hover:underline">
-                                Create Hackathon
+                            <Link
+                                to="/"
+                                className="text-white text-lg hover:text-blue-200 transition duration-300"
+                            >
+                                Available Hackathons
                             </Link>
-                            <Link to="/profile" className="text-white hover:underline">
+                            <Link
+                                to="/create-hackathon"
+                                className="text-white text-lg hover:text-blue-200 transition duration-300"
+                            >
+                                ✏️ Create Hackathon
+                            </Link>
+                            <Link
+                                to="/profile"
+                                className="bg-green-600 text-white px-5 py-2 rounded-md hover:bg-green-700 transition duration-300"
+                            >
                                 Profile
                             </Link>
                             <button
                                 onClick={handleLogout}
-                                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                                className="bg-red-500 text-white px-5 py-2 rounded-md hover:bg-red-600 transition duration-300"
                             >
                                 Logout
                             </button>
                         </>
                     ) : (
                         <>
-                            <Link to="/login" className="text-white hover:underline">Login</Link>
-                            <Link to="/signup" className="text-white hover:underline">Signup</Link>
+                            <Link
+                                to="/login"
+                                className="bg-blue-500 text-white px-5 py-2 rounded-md hover:bg-blue-800 transition duration-300"
+                            >
+                                Login
+                            </Link>
+                            <Link
+                                to="/signup"
+                                className="bg-blue-500 text-white px-5 py-2 rounded-md hover:bg-blue-800 transition duration-300"
+                            >
+                                Signup
+                            </Link>
                         </>
                     )}
                 </div>
