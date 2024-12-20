@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import BASE_URL from "../confi";
 
 const CreateHackathon = () => {
     const [formData, setFormData] = useState({
@@ -19,7 +20,7 @@ const CreateHackathon = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://localhost:8080/hackathon/create", formData);
+            const response = await axios.post(`${BASE_URL}hackathon/create`, formData);
 
             if (response.status === 201) {
                 setMessage("Hackathon created successfully!");

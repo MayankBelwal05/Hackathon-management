@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import BASE_URL from "../confi";
 
 const Profile = () => {
   const [userDetails, setUserDetails] = useState(null);
@@ -25,7 +26,7 @@ const Profile = () => {
 
   const fetchCreatedHackathons = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/hackathon/created");
+      const response = await axios.get(`${BASE_URL}hackathon/created`);
       setHackathons(response.data);
     } catch (error) {
       console.error("Error fetching created hackathons:", error.message);
@@ -46,7 +47,7 @@ const Profile = () => {
       const payload = JSON.parse(atob(token.split(".")[1]));
       const userId = payload.id;
 
-      const response = await axios.get("http://localhost:8080/hackathon/participated", {
+      const response = await axios.get(`${BASE_URL}hackathon/participated`, {
         headers: {
           "Authorization": `Bearer ${token}`,
           "userId": userId 

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'; 
+import BASE_URL from '../confi';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ const Signup = () => {
     e.preventDefault();
     
     try {
-      const response = await axios.post('http://localhost:8080/users/register', formData);
+      const response = await axios.post(`${BASE_URL}husers/register`, formData);
       console.log('User registered successfully:', response.data);
       
     } catch (error) {

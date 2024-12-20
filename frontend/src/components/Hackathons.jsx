@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"; 
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import BASE_URL from "../confi";
 
 const Hackathons = () => {
   const [hackathons, setHackathons] = useState([]);
@@ -24,7 +25,7 @@ const Hackathons = () => {
   useEffect(() => {
     const fetchHackathons = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/hackathon/getAll");
+        const response = await axios.get(`${BASE_URL}hackathon/getAll`);
         setHackathons(response.data);
       } catch (error) {
         console.error("Error fetching hackathons", error);
@@ -41,7 +42,7 @@ const Hackathons = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:8080/hackathon/hackathonregister", {
+      const response = await axios.post(`${BASE_URL}hackathon/hackathonregister`, {
         hackathonId,
         userId,
         hackathonName,
