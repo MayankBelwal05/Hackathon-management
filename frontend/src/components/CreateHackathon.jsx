@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import BASE_URL from "../confi";
+import { useNavigate } from "react-router-dom";
 
 const CreateHackathon = () => {
     const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const CreateHackathon = () => {
         endDate: "",
     });
     const [message, setMessage] = useState("");
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -24,7 +26,9 @@ const CreateHackathon = () => {
 
             if (response.status === 201) {
                 setMessage("Hackathon created successfully!");
+                alert("Hackathon created successfully!")
                 console.log("API Response:", response.data);
+                navigate("/hackathons");
             } else {
                 setMessage("Failed to create Hackathon.");
             }

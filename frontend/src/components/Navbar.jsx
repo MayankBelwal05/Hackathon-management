@@ -25,7 +25,7 @@ const Navbar = () => {
                     {isAuthenticated ? (
                         <>
                             <Link
-                                to="/"
+                                to="/hackathons"
                                 className="text-white text-lg hover:text-blue-200 transition duration-300"
                             >
                                 Available Hackathons
