@@ -6,7 +6,6 @@ const Registration = require("../models/registration.model");
 const createHackathon = async (req, res) => {
   const { name, description, startDate, endDate } = req.body;
   const userId = req.userId;
-  console.log("User ID:", userId);
 
   try {
     const hackathon = new Hackathon({
@@ -35,8 +34,8 @@ const getAllHackathons = async (req, res) => {
 };
 
 const getCreatedHackathons = async (req, res) => {
-  const userId = req.userId; 
-
+  const userId = req.userId;
+  
   try {
     const hackathons = await Hackathon.find({ createdBy: userId })
       .populate("createdBy", "name");
@@ -52,7 +51,7 @@ const getParticipatedHackathons = async (req, res) => {
 
   try {
     const userId = req.userId; 
-    
+
     if (!userId) {
       return res.status(400).json({ message: "User not authenticated" });
     }

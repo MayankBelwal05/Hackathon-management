@@ -3,12 +3,12 @@ const { createHackathon,getCreatedHackathons,getParticipatedHackathons, getAllHa
 const { auth } = require("../middlewares/authmiddleware");
 const router = express.Router();
 
-router.post("/create",createHackathon);
+router.post("/create", auth,createHackathon);
 router.get("/getAll", getAllHackathons);
 router.post("/hackathonregister",hackathonRegister),
 
-router.get("/created", getCreatedHackathons);
-router.get("/participated", getParticipatedHackathons);
+router.get("/created",auth, getCreatedHackathons);
+router.get("/participated",auth, getParticipatedHackathons);
 
 
 

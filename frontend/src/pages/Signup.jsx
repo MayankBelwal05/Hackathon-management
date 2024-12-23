@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom';
 import BASE_URL from '../confi';
 
 const Signup = () => {
@@ -8,8 +8,10 @@ const Signup = () => {
     name: '',
     email: '',
     password: '',
-    qualification: '', 
+    qualification: '',
   });
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,21 +23,32 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    setError('');
+
     try {
-      const response = await axios.post(`${BASE_URL}husers/register`, formData);
+      const response = await axios.post(`${BASE_URL}users/register`, formData);
       console.log('User registered successfully:', response.data);
-      
+      alert("User registered successfully")
+      navigate('/login');
     } catch (error) {
       console.error('Registration error:', error);
+      setError(
+        error.response?.data?.message || 'An error occurred during registration.'
+      );
     }
   };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-xl w-full max-w-xl"> 
+      <div className="bg-white p-8 rounded-lg shadow-xl w-full max-w-xl">
         <h2 className="text-3xl font-semibold text-center text-blue-600 mb-4">✨ Sign Up 📝</h2>
-        
+
+        {error && ( // Display the error message
+          <div className="text-red-500 text-center mb-4 border border-red-500 bg-red-100 p-2 rounded">
+            {error}
+          </div>
+        )}
+
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="name" className="block text-sm font-medium text-gray-700">👤 Full Name</label>

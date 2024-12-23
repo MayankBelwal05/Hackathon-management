@@ -25,19 +25,32 @@ const Profile = () => {
   }, [navigate]);
 
   const fetchCreatedHackathons = async () => {
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+      alert("Please log in.");
+      navigate("/login");
+      return;
+    }
+  
     try {
-      const response = await axios.get(`${BASE_URL}hackathon/created`);
+      const response = await axios.get(`${BASE_URL}hackathon/created`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setHackathons(response.data);
+      console.log(response.data)
     } catch (error) {
       console.error("Error fetching created hackathons:", error.message);
       alert("Error fetching created hackathons.");
     }
   };
+  
 
   const fetchParticipatedHackathons = async () => {
     try {
       const token = localStorage.getItem("token");
-
       if (!token) {
         alert("Please log in.");
         navigate("/login");
@@ -46,6 +59,7 @@ const Profile = () => {
 
       const payload = JSON.parse(atob(token.split(".")[1]));
       const userId = payload.id;
+    
 
       const response = await axios.get(`${BASE_URL}hackathon/participated`, {
         headers: {

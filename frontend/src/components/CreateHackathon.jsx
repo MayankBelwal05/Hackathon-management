@@ -20,13 +20,23 @@ const CreateHackathon = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
+        const token = localStorage.getItem("token");    
+        if (!token) {
+            setMessage("You are not authorized. Please log in.");
+            return;
+        }
+    
         try {
-            const response = await axios.post(`${BASE_URL}hackathon/create`, formData);
-
+            const response = await axios.post(`${BASE_URL}hackathon/create`, formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+    
             if (response.status === 201) {
                 setMessage("Hackathon created successfully!");
-                alert("Hackathon created successfully!")
+                alert("Hackathon created successfully!");
                 console.log("API Response:", response.data);
                 navigate("/hackathons");
             } else {
@@ -37,6 +47,8 @@ const CreateHackathon = () => {
             setMessage("An error occurred. Please try again.");
         }
     };
+    
+
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
