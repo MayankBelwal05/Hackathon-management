@@ -49,7 +49,7 @@ const Hackathons = () => {
       });
 
       console.log("Successfully registered:", response.data);
-      alert(response.data.message);
+      alert("👍 Registered Sucessfully!");
     } catch (error) {
       console.error("Error registering for hackathon:", error.response?.data?.message || error.message);
       alert(error.response?.data?.message || "An error occurred.");

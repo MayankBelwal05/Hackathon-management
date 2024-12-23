@@ -28,7 +28,7 @@ const Navbar = () => {
                                 to="/hackathons"
                                 className="text-white text-lg hover:text-blue-200 transition duration-300"
                             >
-                                Available Hackathons
+                              👀Available Hackathons
                             </Link>
                             <Link
                                 to="/create-hackathon"
@@ -40,7 +40,7 @@ const Navbar = () => {
                                 to="/profile"
                                 className="bg-green-600 text-white px-5 py-2 rounded-md hover:bg-green-700 transition duration-300"
                             >
-                                Profile
+                               Profile
                             </Link>
                             <button
                                 onClick={handleLogout}
